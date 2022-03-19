@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
-#include <math.h>
+#include <cmath>
+#include <string>
+#include <stdexcept>
 
-// this type represents a Term in a function, such as 2x^2 in f(x)=2x^2+5x+2 
+// this class represents a Term in a function, such as 2x^2 in f(x)=2x^2+5x+2 
 class Term
 {
     public:
@@ -23,6 +25,8 @@ class Term
 };
 
 
+// this class represents the function, which is in the form of:
+//   std::vector<Terms>
 class Function
 {
     public:
@@ -30,6 +34,7 @@ class Function
             int degree;
             std::cout << "Enter the highest degree of f(x)" << std::endl;
             std::cin >> degree;
+            std::cout << std::endl;
 
             for (int& d = degree; d >= 0; d--) {
                 int m;
@@ -43,8 +48,17 @@ class Function
             differentiate();
         }
 
-        double newton_raphson(double xn) {
+        float newton_raphson(float xn) {
             return (xn - (calcFunc(function, xn)/calcFunc(diff_func, xn)));
+        }
+
+        bool zeroed(const float& xn) {
+            // check if f(xn) results in 0
+            const float y = calcFunc(function, xn);
+            if (y < 0.0000001) {
+                return true;
+            }
+            return false;
         }
 
         void printFunction() {
@@ -59,22 +73,24 @@ class Function
     private:
         static void print_func(std::vector<Term>& func) {
             std::cout << "Your function is:" << std::endl;
-            for (int ts=0; ts < func.size()-1; ts++) {
+            std::cout << func[0].multiplier << "x^" << func[0].degree;
+            for (int ts=1; ts < func.size(); ts++) {
                 if (func[ts].multiplier != 0) {
-                    std::cout << func[ts].multiplier << "x^" << func[ts].degree << " + ";
+                    std::cout << " + " << func[ts].multiplier << "x^" << func[ts].degree;
                 }
             }
-            std::cout << func[func.size()-1].multiplier << std::endl;
+            std::cout << std::endl;
         }
 
         void differentiate() {
+            // differentiate the function
             for (auto& t : function) {
                 diff_func.push_back(t.getPrime());
             }
         }
 
-        double calcFunc(std::vector<Term>& func, double xn) {
-            double xn_1 = 0;
+        static float calcFunc(std::vector<Term>& func, float xn) {
+            float xn_1 = 0;
             for (auto& f : func) {
                 xn_1 += f.multiplier * std::pow(xn, f.degree);
             }
@@ -89,15 +105,26 @@ class Function
 int main() {
     // get the function from user input
     Function func = Function();
-    func.printFunction();
 
-    // applying newton-raphson method
-    double xn;
+    float xn;
     std::cout << "Enter a number close to the root" << std::endl;
     std::cin >> xn;
+    std::cout << std::endl;
+    const std::string x_init = std::to_string(xn);
 
-    for (int i=0; i <= 8; i++) {
+    // applying newton-raphson method
+    bool zeroed = false;
+    int count = 10;
+    while (! zeroed) {
         xn = func.newton_raphson(xn);
+        zeroed = func.zeroed(xn);
+        count = count - 1;
+        if (count < 0) {
+            throw std::runtime_error("No solution - there is no root near " + x_init);
+        }
     }
-    std::cout << xn << std::endl;
+
+    // printing results
+    func.printFunction();
+    std::cout << "The root of the function is: " << xn << std::endl;
 }

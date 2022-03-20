@@ -48,7 +48,7 @@ class Function
             differentiate();
         }
 
-        double newton_raphson(const double& xn) {
+        double newtonRaphson(const double& xn) {
             double ret = xn - (calcFunc(function, xn)/calcFunc(diff_func, xn));
             if (std::isnan(ret)) {
                 throw std::runtime_error("The supplied starting point has a slope of 0");
@@ -123,7 +123,7 @@ int main() {
         if (count == 100) {
             throw std::runtime_error("Root does not exist");
         }
-        xn = func.newton_raphson(xn);
+        xn = func.newtonRaphson(xn);
         if (func.zeroed(xn)) {
             break;
         }

@@ -77,10 +77,10 @@ class Function
     private:
         static void print_func(std::vector<Term>& func) {
             std::cout << "Your function is:" << std::endl;
-            std::cout << func[0].multiplier << "x^" << func[0].degree;
+            std::cout << "(" << func[0].multiplier << "x^" << func[0].degree << ")";
             for (int ts=1; ts < func.size(); ts++) {
                 if (func[ts].multiplier != 0) {
-                    std::cout << " + " << func[ts].multiplier << "x^" << func[ts].degree;
+                    std::cout << " + " << "(" << func[ts].multiplier << "x^" << func[ts].degree << ")";
                 }
             }
             std::cout << std::endl;

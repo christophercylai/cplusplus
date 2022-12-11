@@ -106,7 +106,8 @@ class Function
 };
 
 
-int main() {
+int main()
+{
     // get the function from user input
     Function func = Function();
 
@@ -114,14 +115,15 @@ int main() {
     std::cout << "Enter a number close to the root" << std::endl;
     std::cin >> xn;
     std::cout << std::endl;
-    const std::string x_init = std::to_string(xn);
 
     // applying newton-raphson method
     bool zeroed = false;
 
     for (int count=0; count <= 100; count++) {
         if (count == 100) {
-            throw std::runtime_error("Root does not exist");
+            std::cerr << "Root does not exist" << std::endl;
+            func.printFunction();
+            return 1;
         }
         xn = func.newtonRaphson(xn);
         if (func.zeroed(xn)) {

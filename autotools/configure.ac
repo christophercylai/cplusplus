@@ -7,7 +7,7 @@ AC_INIT([time_is], [1.0], [christophercylai@outlook.com], [time-is], [https://gi
 # Use libraries
 AC_PROG_RANLIB
 
-# src directory
+# check the existence of src directory
 AC_CONFIG_SRCDIR([src/main.cpp])
 
 # Put autotool's auxiliary files in a subdir, so they don't clutter up top dir

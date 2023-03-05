@@ -6,7 +6,7 @@
 
 int main()
 {
-    const std::string time = time_is();
+    const std::string time = time_now();
     std::cout << "Hello World! "
         << "The current time is "
         << time << "."

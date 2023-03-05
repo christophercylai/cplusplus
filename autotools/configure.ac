@@ -4,8 +4,11 @@ AC_PREREQ([2.71])
 # Macro: AC_INIT (package, version, [bug-report], [tarname], [url])
 AC_INIT([time_is], [1.0], [christophercylai@outlook.com], [time-is], [https://github.com/christophercylai/cplusplus])
 
+# Use libraries
+AC_PROG_RANLIB
+
 # src directory
-AC_CONFIG_SRCDIR([main.cpp])
+AC_CONFIG_SRCDIR([src/main.cpp])
 
 # Put autotool's auxiliary files in a subdir, so they don't clutter up top dir
 AC_CONFIG_AUX_DIR([auxiliary])
@@ -19,6 +22,7 @@ AC_CONFIG_HEADERS([config.h])
 # foreign: a low strictness level that does not require the package to follow GNU standard
 # subdir-objects: 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
+AM_PROG_AR
 
 # Look for C and C++ comiler
 AC_PROG_CXX

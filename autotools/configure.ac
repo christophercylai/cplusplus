@@ -30,7 +30,7 @@ AC_PROG_CC
 AC_PROG_MAKE_SET
 
 # predefine $MAKE
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile src/time_now/Makefile])
 
 # Autoconf output
 AC_OUTPUT

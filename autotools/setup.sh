@@ -2,8 +2,7 @@
 
 set -e
 
-cp -r time_is build/
-cd build
+cd time_is
 autoreconf -i
 ./configure
 make

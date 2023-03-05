@@ -3,5 +3,7 @@
 set -e
 
 autoreconf -i
-./configure
+mkdir -p build
+cd build
+../configure
 make

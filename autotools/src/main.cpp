@@ -2,7 +2,7 @@
 #include "config.h"
 
 #include <iostream>
-#include "time_now.h"
+#include "time_now/time_now.h"
 
 int main()
 {

@@ -1,3 +1,11 @@
 *.exe
 *.stackdump
 *.swp
+
+# autoconf ignores
+*.in
+*.m4
+build/
+autom4te.cache/
+auxiliary/
+configure

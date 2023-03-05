@@ -2,8 +2,8 @@
 
 set -e
 
-cp -r src build_dir/
-cd build_dir
+cp -r time_is build/
+cd build
 autoreconf -i
 ./configure
 make

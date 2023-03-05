@@ -5,7 +5,7 @@ AC_INIT([atomic-time], [1.0], [christophercylai@outlook.com], [atomic-time], [ht
 AC_PREREQ([2.71])
 
 # Put autotool's auxiliary files in a subdir, so they don't clutter up top dir
-AC_CONFIG_AUX_DIR([build])
+AC_CONFIG_AUX_DIR([aux])
 
 # Put configuration results here, so they can be easily included
 AC_CONFIG_HEADERS([config.h])
